@@ -30,7 +30,7 @@ def main(argv):
 def read_CSV(sourceFile, endFile, deviceName):
     print(deviceName)
     df = pd.concat(( [chunk[chunk['Device Pool'] == deviceName] for chunk in pd.read_csv(sourceFile, iterator=True, chunksize=10**4)]))
-    df.filter(['Device Name','Services Provisioning',  'Device Pool', 'Description']).to_csv(endFile, index_label="id")
+    df.filter(['Device Name','Device Type', 'Device Protocol', 'Device Pool', 'Description']).to_csv(endFile, index_label="id")
 
 
 if __name__ == '__main__':
