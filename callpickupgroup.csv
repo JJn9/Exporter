@@ -1,0 +1,18 @@
+CPG NUMBER,DESCRIPTION,ROUTE PARTITION,CPG NAME,CPG NOTIFICATION POLICY,CPG NOTIFICATION TIMER,CALLING PARTY INFO,CALLED PARTY INFO,ASSOCIATED CPG NAME 1
+51000101,LCA-CPG,SYSTEM-PT,LCA-CPG,No Alert,6,f,f,
+51000102,DKA-CPG,SYSTEM-PT,DKA-CPG,No Alert,6,f,f,
+86939003,IBB-Intermodal-PUG,SYSTEM-PT,IBB-Intermodal-PUG,No Alert,6,t,t,
+86939002,IBB-CustomerService-PUG,SYSTEM-PT,IBB-CustomerService-PUG,No Alert,6,f,f,
+100,Call Pickup Group for Test Infra LCA,EMEA-PT-DN-PHONE,DRP-CPG,Audio and Visual Alert,6,t,t,DRP-CPG
+81497001,LCA-PUG-Customer_Care,SYSTEM-PT,LCA-PUG-Customer_Care,No Alert,6,f,f,LCA-PUG-Customer_Care
+51000104,TDC-CPG,SYSTEM-PT,TDC-CPG,No Alert,6,f,f,TDC-CPG
+81497006,LCA-PUG-Log_OPS_Intermodal,SYSTEM-PT,LCA-PUG-Log_OPS_Intermodal,No Alert,6,f,f,LCA-PUG-Log_OPS_Intermodal
+81497008,LCA-PUG-Management,SYSTEM-PT,LCA-PUG-Management,No Alert,6,f,f,LCA-PUG-Management
+51000100,IBB-CPG,SYSTEM-PT,IBB-CPG,No Alert,6,f,f,
+81497002,LCA-PUG-Customer_Delivery,SYSTEM-PT,LCA-PUG-Customer_Delivery,No Alert,6,f,f,LCA-PUG-Customer_Delivery
+81497004,LCA-PUG-Import_Customer_Service,SYSTEM-PT,LCA-PUG-Import_Customer_Service,No Alert,6,f,f,LCA-PUG-Import_Customer_Service
+81497003,LCA-PUG-Sales_Export,SYSTEM-PT,LCA-PUG-Sales_Export,No Alert,6,f,f,LCA-PUG-Sales_Export
+81497005,LCA-PUG_CCPL-Accounting,SYSTEM-PT,LCA-PUG_CCPL-Accounting,No Alert,6,f,f,LCA-PUG_CCPL-Accounting
+81497000,LCA-PUG-Booking,SYSTEM-PT,LCA-PUG-Booking,No Alert,6,f,f,LCA-PUG-Booking
+86939001,IBB-Comercial-PUG,SYSTEM-PT,IBB-Comercial-PUG,No Alert,6,f,f,
+81497007,LCA-PUG-CFO,SYSTEM-PT,LCA-PUG-CFO,No Alert,6,f,f,LCA-PUG-CFO
