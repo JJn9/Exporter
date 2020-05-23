@@ -92,33 +92,34 @@ def read_CSV(sourceFile, endFile, devicePool, css, dirNumber, routePartition):
 
     if not df.empty:
         try:
-            df.replace(r'^\s*$', np.nan, regex=True)
+            df = df.replace(r'^\s*$', np.NaN, regex=True)
             df['Multi-line'] = pd.Series(dtype=object)
-            # for i, row in df.itertuples():
-            #     # if (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] not in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     if (row['Directory Number 1'].notnull() and not row['Directory Number 2'].notnull() and not row['Directory Number 3'].notnull() and not row['Directory Number 4'].notnull()):
-            #         df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] not in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] not in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] not in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] not in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] not in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] in (None,"")):
-            #     #     df.at[i,'Multi-line'] = 'Yes'
-            #     else:
-            #         df.at[i,'Multi-line'] = 'No'
+
+            for i, row in df.iterrows():
+                # if (row['Directory Number 1'] != np.NaN and row['Directory Number 2'] != np.NaN and row['Directory Number 3'] != np.NaN and row['Directory Number 4'] != np.NaN):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # if (row['Directory Number 1'] in (None,"") and not row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] not in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] not in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] not in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] not in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] not in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] in (None,"") and row['Directory Number 2'] not in (None,"") and row['Directory Number 3'] in (None,"") and row['Directory Number 4'] not in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # elif (row['Directory Number 1'] not in (None,"") and row['Directory Number 2'] in (None,"") and row['Directory Number 3'] not in (None,"") and row['Directory Number 4'] in (None,"")):
+                #     df.at[i,'Multi-line'] = 'Yes'
+                # else:
+                #     df.at[i,'Multi-line'] = 'No'
 
                     
             df.filter(['Device Name','Device Type', 'Device Protocol', 'Device Pool', 'Directory Number 1', 'Directory Number 2', 'Directory Number 3', 'Directory Number 4', 'CSS', 'Description', 'Location', 'Media Resource Group List',
