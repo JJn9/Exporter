@@ -95,8 +95,7 @@ def read_CSV(sourceFile, endFile, devicePool, css, dirNumber, routePartition):
             df = df.replace(r'^\s*$', np.nan, regex=True)
             for i, row in df.iterrows():
                 cols = [ f'Directory Number {i}' for i in range(1, 5) ]
-                df['Multi-line'] = df[cols].apply(lambda row:
-                    'Yes' if row.notna().sum() >= 2 else 'No', axis=1)
+                df['Multi-line'] = df[cols].apply(lambda row: 'Yes' if row.notna().sum() >= 2 else 'No', axis=1)
 
                     
             df.filter(['Device Name','Device Type', 'Device Protocol', 'Device Pool', 'Directory Number 1', 'Directory Number 2', 'Directory Number 3', 'Directory Number 4', 'CSS', 'Description', 'Location', 'Media Resource Group List',
@@ -104,10 +103,35 @@ def read_CSV(sourceFile, endFile, devicePool, css, dirNumber, routePartition):
                         'Owner User ID', 'Directory Number 1', 'Route Partition 1', 'Alerting Name 1', 'Display 1', 'External Phone Number Mask 1', 'Call Pickup Group 1', 'Line CSS 1', 
                         'Forward All CSS 1', 'Forward No Answer Ring Duration 1', 'Forward No Answer Internal Destination 1', 'Forward No Answer External Destination 1', 'Busy Trigger 1',
                         'Forward Busy Internal Destination 1', 'Forward Busy External Destination 1', 'Multi-line']).to_csv(endFile, index_label="id")
+            cpg_match(endFile)
         except Exception as e:
             print(e)
     else:
         print("Error check your values")
+
+    
+def cpg_match(phone_file):
+    phone_file = pd.read_csv(phone_file)
+    writer = pd.ExcelWriter('final.xlsx', engine='xlsxwriter')
+    df = pd.DataFrame()
+    for cpg in phone_file['Call Pickup Group 1']:
+        if not pd.isna(cpg):
+            df = df.append(pd.concat(([chunk[chunk['CPG NAME'].str.contains(cpg)] for chunk in pd.read_csv('callpickupgroup.csv', iterator=True, chunksize=10 ** 4)])))
+    if not df.empty:
+        try:
+            df = df.replace(r'^\s*$', np.nan, regex=True)
+            df.filter(['CPG NUMBER', 'DESCRIPTION', 'ROUTE PARTITION', 'CPG NAME', 'CPG NOTIFICATION POLICY',
+                    'CPG NOTIFICATION TIMER', 'CALLING PARTY INFO', 'ASSOCIATED CPG NAME 1']).to_csv('phoneref.csv',
+                                                                                                        index_label="id")
+        except Exception as e:
+            print(e)
+    else:
+        print("Error check your values")
+        
+    dfs = {'phone': pd.read_csv('test.csv'), 'CPG': pd.read_csv('phoneref.csv')}
+    for sheet_name in dfs.keys():
+        dfs[sheet_name].to_excel(writer, sheet_name=sheet_name, index=False)
+    writer.save()
    
 
 
